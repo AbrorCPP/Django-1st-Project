@@ -21,6 +21,6 @@ def profile_page(request):
     )
 urlpatterns = [
     path(route="", view=home_page),
-    path(route="contact", view=contact_page),
-    path(route="profile", view=profile_page),
+    path(route="contact/", view=contact_page),
+    path(route="profile/", view=profile_page),
 ]
