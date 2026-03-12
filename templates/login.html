@@ -10,23 +10,34 @@ body{
     margin:0;
     height:100vh;
     display:flex;
-    justify-content:center;
-    align-items:center;
+    flex-direction:column;
     background:#0f172a;
     font-family:Arial, sans-serif;
 }
 
+.login-container{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
 .login-box{
+    display:flex;
+    flex-direction:column;
     background:#1e293b;
     padding:40px;
     border-radius:10px;
     width:300px;
     text-align:center;
+    margin-bottom:100px;
 }
 
 h2{
     color:white;
     margin-bottom:25px;
+    font-family:sans-serif;
 }
 
 input{
@@ -62,24 +73,25 @@ a{
 
 <body>
 
-<div class="login-box">
+{% include 'components/_navbar.html' %}
 
-<h2>Login</h2>
+<div class="login-container">
 
-<form>
+    <div class="login-box">
+        <h2>Login</h2>
 
-<input type="text" placeholder="Username">
+        <form method="POST" action="/authorize/">
+            {% csrf_token %}
+            <input name = "username" type="text" placeholder="Username">
+            <input name = "password" type="password" placeholder="Password">
+            <button type="submit">Login</button>
 
-<input type="password" placeholder="Password">
+            <br><br>
 
-<button type="submit">Login</button>
+            <a href="#">Forgot password?</a>
+        </form>
 
-<br><br>
-
-<a href="#">Forgot password?</a>
-
-</form>
-
+    </div>
 </div>
 
 </body>

@@ -2,5 +2,8 @@
 
 <h1> Home Page </h1>
 
-
-
+{% if request.user.is_authenticated %}
+<p> Assalomu aleykum {{ request.user.last_name }} {{ request.user.first_name }}</p>
+{% else %}
+<p> Ushbu sahifaga kirish uchun tizimga kirish talab etiladi</p>
+{% endif %}
