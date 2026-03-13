@@ -48,7 +48,7 @@ input{
     border-radius:5px;
 }
 
-button{
+.login{
     width:100%;
     padding:10px;
     background:#22c55e;
@@ -83,8 +83,11 @@ a{
         <form method="POST" action="/authorize/">
             {% csrf_token %}
             <input name = "username" type="text" placeholder="Username">
-            <input name = "password" type="password" placeholder="Password">
-            <button type="submit">Login</button>
+            <div>
+                <input  id = "password" name = "password" type="password" placeholder="Password">
+                <button type = button id = "hideOrShowPassword">👁️</button>
+            </div>
+            <button type="submit" class = "login">Login</button>
 
             <br><br>
 
@@ -93,6 +96,19 @@ a{
 
     </div>
 </div>
+
+<script type = "text/javascript">
+    const hideOrShowPassword = document.getElementsById('hideOrShowPassword');
+    const passwordField = document.getElementById('password');
+
+    hideOrShowPassword.addEventListener('click', () => {
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+    } else {
+        passwordField.type = 'password';
+    }
+    }
+</script>
 
 </body>
 </html>

@@ -10,4 +10,5 @@ urlpatterns = [
     path(route="profile/", view=views.profile_page),
     path(route="login/", view=views.login_page),
     path(route="authorize/", view=views.authorize),
+    path(route="logout/", view=views.user_logout),
 ]
