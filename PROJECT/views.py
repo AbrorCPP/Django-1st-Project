@@ -26,6 +26,9 @@ def login_page(request):
     else:
         return redirect('/')
 
+def register_page(request):
+    return render( request,'registration.html',)
+
 def authorize(request):
     username = request.POST['username']
     password = request.POST['password']
