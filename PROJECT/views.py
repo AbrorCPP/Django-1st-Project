@@ -1,9 +1,15 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
+from app_data.models import Product 
 
 def home_page(request):
-    return render( request,'home_page.html',)
+    product = Product.objects.all().order_by("name")
+
+    data = {
+        "product" : product
+    }
+    return render( request,'home_page.html',context = data)
 
 def contact_page(request):
     return render( request,'contact.html',)
