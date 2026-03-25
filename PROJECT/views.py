@@ -29,6 +29,19 @@ def login_page(request):
 def register_page(request):
     return render( request,'registration.html',)
 
+def register_user(request):
+    first_name = request.POST['first_name']
+    last_name = request.POST['last_name']
+    username = request.POST['username']
+    email = request.POST['email']
+    password1 = request.POST['password1']
+    password2 = request.POST['password2']
+
+    if password1 != password2:
+        return redirect('/signup/')
+    else:
+        ...
+        
 def authorize(request):
     username = request.POST['username']
     password = request.POST['password']

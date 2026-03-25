@@ -15,15 +15,15 @@
 
   <h1 class="text-center mt-5 mb-2">Ro'yxatdan o'tish</h1>
 
-  <form action="..." method="post" class="w-25 m-auto d-flex flex-column gap-2">
+  <form action="{% url 'register_user' %}" method="post" class="w-25 m-auto d-flex flex-column gap-2">
             {% csrf_token %}
 
-            <input type="text" placeholder="Ism" class="form-control">
-            <input type="text" placeholder="Familiya" class="form-control">
-            <input type="text" placeholder="*Username" required class="form-control">
-            <input type="email" placeholder="example@gmail.com" class="form-control">
-            <input type="password" placeholder="*Parol" required class="form-control">
-            <input type="password" placeholder="*Parolni tasdiqlang" required class="form-control">
+            <input name = "first_name"    type="text" placeholder="Ism" class="form-control">
+            <input name = "last_name"     type="text" placeholder="Familiya" class="form-control">
+            <input name = "username"      type="text" placeholder="*Username" required class="form-control">
+            <input name = "email"         type="email" placeholder="example@gmail.com" class="form-control">
+            <input name = "password1"     type="password" placeholder="*Parol" required class="form-control">
+            <input name = "password2"     type="password" placeholder="*Parolni tasdiqlang" required class="form-control">
 
             <button type="submit" class="btn btn-primary w-100">Ro'yxatdan o'tish</button>
         </form>
