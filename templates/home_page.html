@@ -20,7 +20,7 @@
 <div class = "Table">
     {% for pr in product %}
         <div class="card" style="width: 18rem;">
-        <img src="https://www.google.com/imgres?q=image&imgurl=https%3A%2F%2Fik.imagekit.io%2Fikmedia%2Fblog%2Fghost%2Fcontent%2Fimages%2F2019%2F12%2Fimage-optimization.jpg&imgrefurl=https%3A%2F%2Fimagekit.io%2Fblog%2Fimage-optimization-its-importance%2F&docid=SuTksTy_3whM4M&tbnid=ls6mUEs56iOQhM&vet=12ahUKEwjbiY65j7uTAxXfFRAIHQaPBSoQnPAOegQIXhAB..i&w=900&h=600&hcb=2&ved=2ahUKEwjbiY65j7uTAxXfFRAIHQaPBSoQnPAOegQIXhAB" class="card-img-top" alt="...">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtJ3ByJ4FnQRGy7bdbW-aF89CsFL34o_Vcw&s" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Mahsulot nomi : {{pr.name}}</h5>
             <p class="card-text">Narxi : {{pr.price}}</p>
@@ -31,6 +31,10 @@
 </div>
 
 <style>
+    * {
+        background: #132441;
+    }
+
     .Table {
         display: flex;
         flex-direction: row;
@@ -38,6 +42,7 @@
         gap: 50px;
         margin: 10px;
         padding: 10px;
+        
     }    
 </style>
 
