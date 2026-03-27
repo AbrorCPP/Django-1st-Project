@@ -81,19 +81,21 @@ def register_user(request):
     if password1 != password2:
         return redirect("register")
     
-    user_exists = User.object.filther(username = username).exists()
+    user_exists = User.objects.filter(username = username).exists()
 
     if user_exists:
         return redirect("register")
     
-    User.objects.create(
+    new_user = User.objects.create(
         first_name = first_name,
         last_name = last_name,
         username = username,
         email = email,
     )
 
-    User.set_password(raw_password=password2)
+    new_user.set_password(raw_password=password2)
+
+    new_user.save()
 
     return redirect("login")
 

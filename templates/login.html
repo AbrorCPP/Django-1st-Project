@@ -5,79 +5,13 @@
 <title>Login</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
-<style>
-
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    background:#0f172a;
-    font-family:Arial, sans-serif;
-}
-
-.login-container{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-
-.login-box{
-    display:flex;
-    flex-direction:column;
-    background:#1e293b;
-    padding:40px;
-    border-radius:10px;
-    width:300px;
-    text-align:center;
-    margin-bottom:100px;
-}
-
-h2{
-    color:white;
-    margin-bottom:25px;
-    font-family:sans-serif;
-}
-
-input{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-    border:none;
-    border-radius:5px;
-}
-
-.login{
-    width:100%;
-    padding:10px;
-    background:#22c55e;
-    border:none;
-    color:white;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#16a34a;
-}
-
-a{
-    color:#94a3b8;
-    text-decoration:none;
-    font-size:14px;
-}
-
-</style>
 </head>
 
 <body>
 
 {% include 'components/_navbar.html' %}
 
-<div class="login-container">
+{% comment %} <div class="login-container">
 
     <div class="login-box">
         <h2>Login</h2>
@@ -102,20 +36,33 @@ a{
         </form>
 
     </div>
-</div>
+</div> {% endcomment %}
 
-<script type = "text/javascript">
-    const hideOrShowPassword = document.getElementsById('hideOrShowPassword');
-    const passwordField = document.getElementById('password');
-
-    hideOrShowPassword.addEventListener('click', () => {
-    if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-    } else {
-        passwordField.type = 'password';
-    }
-    }
-</script>
+<form class = "m-auto w-25" method="POST" action="/authorize/">
+    {% csrf_token %}
+    <h2 class="display-5 fw-bold text-center mb-4 text-primary pt-5">
+    Tizimga kirish
+    </h2>
+    <hr class="w-25 mx-auto mb-5">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input name = "username" type="text" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input name = "password" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div>
+        <p>
+        Akkauntingiz yo'qmi unda <a href = {% url 'register' %}> Ro'yxatdan o'ting </a> 
+        <p>
+    </div>
+</form>
 
 </body>
 </html>
