@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout,authenticate
-from django.contrib.auth.models import User
 from app_data.models import Product 
+from django.contrib.auth.models import User
+
 
 def home_page(request):
     product = Product.objects.all().order_by("name")
@@ -29,19 +30,6 @@ def login_page(request):
 def register_page(request):
     return render( request,'registration.html',)
 
-def register_user(request):
-    first_name = request.POST['first_name']
-    last_name = request.POST['last_name']
-    username = request.POST['username']
-    email = request.POST['email']
-    password1 = request.POST['password1']
-    password2 = request.POST['password2']
-
-    if password1 != password2:
-        return redirect('/signup/')
-    else:
-        ...
-        
 def authorize(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -79,5 +67,39 @@ def authorize(request):
 def user_logout(request):
     logout(request)
     return redirect("/login/")
+
+def register_user(request):
+    first_name = request.POST.get('first_name')
+    last_name = request.POST.get('last_name')
+    username = request.POST.get('username')
+    email = request.POST.get('email')
+    password1 = request.POST.get('password1')
+    password2 = request.POST.get('password2')
+
+
+    #Guard-clause
+    if password1 != password2:
+        return redirect("register")
+    
+    user_exists = User.object.filther(username = username).exists()
+
+    if user_exists:
+        return redirect("register")
+    
+    User.objects.create(
+        first_name = first_name,
+        last_name = last_name,
+        username = username,
+        email = email,
+    )
+
+    User.set_password(raw_password=password2)
+
+    return redirect("login")
+
+
+    
+
+    
 
 
