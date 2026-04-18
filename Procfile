@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath . PROJECT.wsgi:application
+web: gunicorn --pythonpath . --log-level debug PROJECT.wsgi:application
