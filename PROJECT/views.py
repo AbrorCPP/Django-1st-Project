@@ -99,9 +99,58 @@ def register_user(request):
 
     return redirect("login")
 
+def add_product(request):
+    if request.method == "POST":
+        print(request.FILES)
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        owner = request.user
+        image = request.FILES.get("image")
 
+        new_product = Product.objects.create (
+            name = name,
+            price = price,
+            owner = owner,
+            image = image
+        )
+
+        new_product.save()
+        
+        return redirect(home_page)
+
+    return render(request,'add_p.html')
     
+def delete_product(request,product_id):
+    product = Product.objects.get(id = product_id)
+    product.delete()
+    return redirect(home_page)
 
+def product_detail(request,product_id):
+    product = Product.objects.get(id = product_id)
+
+    data = {
+        "product":product
+    }
+
+    return render(request, "product_detail.html",context= data)
+
+def edit_product(request,product_id):
     
+    product = Product.objects.get(id = product_id)
 
+    if request.method == "POST":
+        name = request.POST.get("name")
+        price = request.POST.get("price")
 
+        product.name = name
+        product.price = price
+
+        product.save()
+
+        return redirect(home_page)
+
+    data = {
+        "Product":product
+    }
+
+    return render(request,'edit_product.html',context=data)

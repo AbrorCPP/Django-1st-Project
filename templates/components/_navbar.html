@@ -12,45 +12,49 @@
     <a href="/"> Bosh sahifa </a> {% endcomment %}
 
 
-<nav class="navbar navbar-expand-lg bg-secondary">
+<nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Bosh sahifa</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/contact/">Kontactlar sahifasi</a>
+          <a class="nav-link" href="/contact/">Kontaktlar</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="/profile/">Profil sahifasi</a>
+          <a class="nav-link" href="/profile/">Profil</a>
         </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="/add_product/">Mahsulot qo‘shish</a>
+        </li>
+        {% endif %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/logout/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
             Menu
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/login/">Kirish</a></li>
-            <li><a class="dropdown-item" href="/logout/">CHiqish</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="/logout/">Chiqish</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
+
       </ul>
+
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Qidirish">
+        <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
-      
+
     </div>
   </div>
 </nav>
-
-
 
 {% comment %} 
 <style>

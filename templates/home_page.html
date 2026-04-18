@@ -5,11 +5,11 @@
 
 <h1> Home Page </h1>
 
-{% if request.user.is_authenticated %}
-<p> Assalomu aleykum {{ request.user.last_name }} {{ request.user.first_name }}</p>
-{% else %}
+{% if not request.user.is_authenticated %}
 <p> Ushbu sahifaga kirish uchun tizimga kirish talab etiladi</p>
-{% endif %}
+{% else %}
+<p> Assalomu aleykum {{ request.user.last_name }} {{ request.user.first_name }}</p>
+
 
 {% comment %} {% for pr in product%}
 <div class = "Table">
@@ -17,14 +17,26 @@
     <p>  </p>
 </div>
 {% endfor %} {% endcomment %}
-<div class = "Table">
+<div class = "Table flex-wrap: wrap display-flex flex-direction-row justify-content-center">
     {% for pr in product %}
-        <div class="card" style="width: 18rem;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtJ3ByJ4FnQRGy7bdbW-aF89CsFL34o_Vcw&s" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Mahsulot nomi : {{pr.name}}</h5>
-            <p class="card-text">Narxi : {{pr.price}}</p>
-            <a href="#" class="btn btn-primary">BUY</a>
+        <div class="card" style="min-width: 16rem; max-width: 20rem;">
+        <img src="{% if pr.image %}{{ pr.image.url }}{% else %}https://imgs.search.brave.com/kTXx0hJ3Zg6mgla4cq_tB6lJJNv8xWKZGerIBsmrlho/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA0LzYzLzY2Lzcw/LzM2MF9GXzQ2MzY2/NzAyNl9CNkw4SUd5/MmNnR1lkWU9rTjho/QkU1NUIxenBjVnZE/Yy5qcGc{% endif %}" class="card-img-top" alt="...">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title">Mahsulot nomi : 
+                <a href = "{% url 'product_detail' product_id=pr.id %}">{{pr.name}}</a>
+            </h5>
+            <p class="card-text mt-auto">Narxi : {{pr.price}}</p>
+            <div class = "d-flex flex-column gap-1" >
+                <div class = "d-flex flex-row gap-1">
+                    {% if request.user == pr.owner %}
+                    <a href=" {% url 'delete_product' product_id=pr.id %}" class="btn btn-danger w-100">DELETE</a>
+                    {% endif %}
+                    <a href="#" class="btn btn-primary w-100">BUY</a>
+                </div>
+                {% if request.user == pr.owner %}
+                <a href="{% url 'edit_product' product_id=pr.id %}" class="btn btn-warning w-100 mt-2">EDIT</a>
+                {% endif %}
+            </div>
         </div>
         </div>
     {% endfor %}
@@ -43,3 +55,4 @@
     }    
 </style>
 
+{% endif %}
